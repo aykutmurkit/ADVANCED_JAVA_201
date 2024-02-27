@@ -1,0 +1,4 @@
+
+Düzenli ifadeler bir string içinde arama yapmamızı sağlar. 
+
+yada başka bir ifadeyle bir string içinde başka bir string aradığımız zaman düzenli ifadeleri kullanıyoruz.
