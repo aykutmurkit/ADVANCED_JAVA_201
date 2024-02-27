@@ -1,0 +1,11 @@
+
+// ^ bazı durumlarda dışında anlamı da var
+// - arasında
+// .
+// [a-e[p-t]] birleşim manasına getiriyor. a-e arasında yada p-t arasında demek
+// && intersection demek kesişim
+// ^a-p a-p arası dışında demek.
+// . herhangi bir harf gelebilmesi durumu 
+// [abc] a b c harflerinden bir harf mi?
+// [^abc] a ya da b ya da c harflerin dışında
+//... devam et
