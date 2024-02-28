@@ -33,3 +33,7 @@ regex = "..al..";
 ifade = "kalem";
 System.out.println(Pattern.matches(regex,ifade));
 
+sonraki video...
+Düzenli İfadelerin Kodda Uygulanması - 6
+
+
