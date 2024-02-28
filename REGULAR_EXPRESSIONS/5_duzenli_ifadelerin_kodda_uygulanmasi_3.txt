@@ -1,0 +1,35 @@
+Pattern pattern;
+Matcher matcher;
+
+ifade = "b";
+regex = "[a-e[k-y]]";
+
+pattern = Pattern.compile(regex);
+matcher = pattern.matcher(ifade);
+System.out.println("a-e arasında ya da k-y arasında mı?"+matcher.matches()); // true
+
+
+
+ifade = "g";
+matcher = pattern.matcher(ifade);
+System.out.println("a-e arasında ya da k-y arasında mı?"+matcher.matches()); // false 
+
+##################
+## INTERSECTION ##
+##################
+
+
+regex = "[a-z&&[^f-k]]"; // bu bir harfi temsil ediyor. ancakkkkkk "[a-z&&[^f-k]][a-z&&[^f-k]]" bu şekilde yazarsan iki harfi temsil ediyor.
+
+ifade = "t";
+
+pattern = Pattern.compile(regex);
+matcher = pattern.matcher(ifade);
+System.out.println("a ile z arasında ve f ile k arasında olmayan bir harfi mi"+matcher.matches());
+
+doğrudan bire bir karşılaştırma yapıyorsan matches methodu kullanılablir.
+
+regex = "..al..";
+ifade = "kalem";
+System.out.println(Pattern.matches(regex,ifade));
+
