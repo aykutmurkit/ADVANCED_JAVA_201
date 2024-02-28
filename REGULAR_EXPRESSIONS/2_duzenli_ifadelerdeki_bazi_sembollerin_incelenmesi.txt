@@ -1,4 +1,3 @@
-
 // ^ bazı durumlarda dışında anlamı da var
 // - arasında
 // .
@@ -8,4 +7,7 @@
 // . herhangi bir harf gelebilmesi durumu 
 // [abc] a b c harflerinden bir harf mi?
 // [^abc] a ya da b ya da c harflerin dışında
-//... devam et
+// [a-zA-Z] a-z ya da A-Z arasında
+// [a-e[p-t]] a-e ya da p-t arasında
+// [a-z && [^bc]] a harfi ya da d-z arasında demek
+// [a-z&&[^c-g]] c-g dışındaki harfler.
