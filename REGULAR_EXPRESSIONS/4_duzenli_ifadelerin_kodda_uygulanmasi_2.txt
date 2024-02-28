@@ -1,0 +1,38 @@
+Pattern pattern;
+Matcher matcher;
+
+ifade = "b";
+regex = "[abc]";
+
+pattern = Pattern.compile(regex);
+matcher = pattern.matcher(ifade);
+
+System.out.prinltln("abc harflerinden bir harf mi? "+matcher.matches()+" "+ifade); // true döner.
+
+ancak 
+
+ifade = "bb";
+matcher.pattern.matcher(ifade);
+
+System.out.prinltln("abc harflerinden bir harf mi? "+matcher.matches()+" "+ifade); // false döner.
+// çünkü bir karakter arıyoruzz
+
+--------------------------------------------------------------------------------------------------
+
+regex = "[^abc]";
+ifade = "d";
+
+pattern = Pattern.compile(regex);
+matcher =pattern.matcher(ifade);
+
+System.out.prinltln("abc harflerinden bir harf değil mi? "+matcher.matches()+" "+ifade); // true döner.
+
+-------------------------------------------------------------------------------------------------
+
+regex = "a-zA-Z";
+ifade="e";
+
+pattern = Pattern.compile(regex);
+matcher = pattern.matcher(ifade);
+
+System.out.prinltln("Bir karakter mi? yada bir harf mi? "+matcher.matches()+" "+ifade); // true döner.
