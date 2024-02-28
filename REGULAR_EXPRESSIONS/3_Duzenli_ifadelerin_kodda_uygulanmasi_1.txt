@@ -1,0 +1,83 @@
+import java.util.regez.*;
+
+// Regular Expression (Regex) için Pattern nesnesini oluşturuyoruz.
+// CASE_INSENSITIVE, büyük-küçük harf duyarlılığını göz ardı etmek için kullanılır.   
+Pattern pattern;
+  
+// Matcher, regex ile metin arasında eşleşmeleri kontrol etmek için kullanılır.
+Matcher matcher;
+
+
+// Aranacak kelime
+String aranacakKelime = "Aykut";
+
+// Metin
+String metin = "Aykut MÜRKİT";
+
+
+
+  // Aranacak kelimenin içinde bulunduğu durumu kontrol eden regex pattern'ı oluşturuyoruz.
+        pattern = Pattern.compile(aranacakKelime, Pattern.CASE_INSENSITIVE);
+        
+        // Matcher nesnesini, metin üzerinde arama yapmak için kullanıyoruz.
+        matcher = pattern.matcher(metin);
+
+        // find() metodu, arama işlemini gerçekleştirir ve eğer aranan kelime bulunursa true döner.
+        if (matcher.find()) {
+            // Eğer aranan kelime bulunursa, bu blok çalışır.
+            System.out.println(aranacakKelime + " - " + metin + " metni içerisinde.");
+        } else {
+            // Eğer aranan kelime bulunmazsa, bu blok çalışır.
+            System.out.println(aranacakKelime + " - " + metin + " metni içerisinde değil.");
+        }
+
+
+Tam eşleşme, bir regular expression (regex) ifadesinin, bir metin dizisiyle tamamen uyuşması anlamına gelir. 
+Başka bir deyişle, regex ifadesi, hedef metinle baştan sona kadar birebir olarak eşleşmelidir. 
+Eğer regex ifadesi, hedef metnin her karakteriyle uyumlu değilse, tam eşleşme sağlanmaz.
+
+// matches ile tam eşleşme olur.
+
+String ifade = "kedi|kopek"; // dikey çubuk pipe;
+String regex ="|";
+
+pattern = Pattern.compile(regex);
+matcher.pattern.matcher(ifade);
+
+if(matcher.find()){
+    String[] kelimeler = ifade.split(regex);
+    for(String kelime:kelimeler){
+        System.out.println(kelime);
+    }
+
+}
+else {
+    System.out.println(regex+"karakteri olamdığından dolayı bölünemedi.");
+}
+
+// pipi karakteri özel olduğu içine ikiye değilde şu şekilde çıktı olack
+
+output: 
+k
+e
+d 
+i 
+|
+k 
+o 
+p 
+e 
+k 
+
+// bundan kaçınmak için backslash kullan 
+
+String regex ="\\|"; // bu şekilde olacak. backslash ile özel karakterleri normal karakterlere çevirirsin.
+
+
+// . nokta karakteri - herhangi bir harf olma durumuydu.
+
+pattern = Pattern.compile(".al.."); // içerisinde al geçecek ancak diğer üç kelime önemli değil
+matcher = pattern.matcher("kalem");
+System.out.println("5 harfli bir stringte 2. harf a ve 3. harf l mi? "+matcher.matches()); //output: true döndü
+
+
