@@ -1,0 +1,163 @@
+
+// . --> herhangi bir karakter 
+
+NOTE
+
+\\. ile meta karakterden normal karaktere dönüşüm yapılır.
+
+
+// d --> rakam olan karakter(digit)
+// D --> rakam olmayan karakterlerin sorgulaması (nondigit)
+// s --> boşluk olan karakter
+// S --> boşluk olmayan karakter 
+// w --> kelime karakteri mi [a-zA-Z_0-9] bu ifadenin kısaltılmış harflerinden
+// W --> kelime karakteri değil
+// b --> kelimenin karakteri sınır kontrolü  
+// B --> kelime karakteri olmayan sınır kontrolü
+
+
+
+________________________________________________________________________________________________________________________________________________________
+
+.
+
+System.out.println(Pattern.matches(".","a")); // true
+System.out.println(Pattern.matches(".","1")); // true
+System.out.println(Pattern.matches(".",".")); // true
+System.out.println(Pattern.matches("..","ab")); // true
+
+NOTE:
+nokta aramak için "\\." olarak bir regex belirlemen lazım.
+
+System.out.println(Pattern.matches(".","")); // false
+
+
+________________________________________________________________________________________________________________________________________________________
+
+\\d
+
+System.out.println(Pattern.matches("\\d","1")); // true
+
+System.out.println(Pattern.matches("\\d","12")); // false
+System.out.println(Pattern.matches("\\d","a")); // false
+
+
+\\d*
+
+System.out.println(Pattern.matches("\\d*","1")); // true
+System.out.println(Pattern.matches("\\d*","12")); // true
+System.out.println(Pattern.matches("\\d*","112312")); // true
+
+\\d\\d 
+
+System.out.println(Pattern.matches("\\d","12")); // true
+
+System.out.println(Pattern.matches("\\d","11")); // false
+System.out.println(Pattern.matches("\\d","122")); // false
+
+________________________________________________________________________________________________________________________________________________________
+
+\\D 
+
+System.out.println(Pattern.matches("\\D","a")); // true
+System.out.println(Pattern.matches("\\D","1")); // true
+
+
+\\D*
+System.out.println(Pattern.matches("\\D*","abcsd")); // true
+System.out.println(Pattern.matches("\\D*","abcsd1")); // false
+
+
+
+\\D\\D
+System.out.println(Pattern.matches("\\D\\D","ad")); // true
+System.out.println(Pattern.matches("\\D\\D","adc")); // false
+
+________________________________________________________________________________________________________________________________________________________
+
+\\s 
+
+System.out.println(Pattern.matches("\\s"," ")); // true
+System.out.println(Pattern.matches("\\s","a ")); // false
+System.out.println(Pattern.matches("\\s","")); // false
+
+
+\\s*
+
+System.out.println(Pattern.matches("\\s*","      ")); // true
+System.out.println(Pattern.matches("\\s*","")); // true
+
+\\s+  --> en bir tane boşluk olması lazım.
+
+System.out.println(Pattern.matches("\\s+","")); // false
+System.out.println(Pattern.matches("\\s+"," ")); // true
+
+________________________________________________________________________________________________________________________________________________________
+
+\\S 
+
+System.out.println(Pattern.matches("\\S","")); // true
+System.out.println(Pattern.matches("\\S","A")); // true
+System.out.println(Pattern.matches("\\S","b")); // true
+System.out.println(Pattern.matches("\\S","1")); // true
+System.out.println(Pattern.matches("\\S","_")); // true
+System.out.println(Pattern.matches("\\S","-")); // true
+
+
+örnek 
+String soyad = "mürkit";
+System.out.println(Pattern.matches(\\S*,soyad)); // true döner çünkü hiç boşluk yok. bu şekilde doğru bir şekilde yazılıp yazılmadığını kontrol edebilirsin.
+
+
+
+________________________________________________________________________________________________________________________________________________________
+
+\\W
+
+System.out.println(Pattern.matches("\\W","A"));          // true
+System.out.println(Pattern.matches("\\W","yd"));          // false
+
+
+
+
+\\W*
+
+System.out.println(Pattern.matches("\\W","aykut"));          // true
+System.out.println(Pattern.matches("\\W","aykut95"));        // true
+System.out.println(Pattern.matches("\\W","aykut mürkit"));   // false
+
+[\\W[ ]]*   
+
+--> bu [a-zA-Z0-9 ]* demek yannii boşluk da vardır
+System.out.println(Pattern.matches("[\\W[ ]]*","aykut mürkit"));   // true
+
+[^\\W] 
+
+// kelime karakterleri dışında demek. 
+System.out.println(Pattern.matches("[^\\W] ","!"));   // true
+
+
+________________________________________________________________________________________________________________________________________________________
+
+
+\\b
+
+\\baykut\\b --> aykut ile başlayacak ve aykut ile bitecek demek oluyor.
+
+System.out.println(Pattern.matches([\\baykut\\b,"aykut"])); // true
+System.out.println(Pattern.matches([\\baykut\\b,"aykut-"])); // false
+System.out.println(Pattern.matches([\\b-aykut\\b,"-aykut"])); // false
+
+
+illa ki kelime karakteri olmak zorunda
+
+________________________________________________________________________________________________________________________________________________________
+
+\\B 
+
+\\Baykut\\B 
+System.out.println(Pattern.matches([\\baykut\\b,"aykut"])); // false
+
+\\baykut!\\B 
+System.out.println(Pattern.matches([\\baykut!\\B,"ayku!t"])); // true
+
