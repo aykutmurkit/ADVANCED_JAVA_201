@@ -1,0 +1,12 @@
+matches -- eşleşiyor mu 
+find -- içinde bulunuyor mu
+
+
+
+// a veya b veya c bulunur 
+
+regex = "[abc]"; yada "[a|b|c]" olarak da yazabilirsin
+
+ifade = "b";
+
+System.out.println(Pattern.matches(regex, ifade));
