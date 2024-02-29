@@ -1,0 +1,36 @@
+// email doğrulama uygulaması
+
+public class Driver{
+
+    private Pattern pattern;
+    private Matcher matcher;
+
+
+    // EMAİL patterni için autoregex.xyz kullanabilirsin.
+
+    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9]+\.[a-zA-z]{1,8}$"; 
+    // bunun yerine "^[\\W-]+@[a-zA-Z0-9]+\.[a-zA-z]{1,8}$"; de yazabilirsin. aynı şey
+
+
+    public Driver(){
+        pattern = Pattern.compile(EMAIL_PATTERN);
+
+    }
+
+    public boolean validateEmail(final String text){
+        matcher = pattern.matcher(text);
+        return matcher.matches();
+    }
+
+
+    public static void main(String [] args){
+
+
+        Driver driver = new Driver();
+
+        driver.validateEmail("aykutmurkit@gmail.com"); // output : true;
+
+
+
+    }
+}
