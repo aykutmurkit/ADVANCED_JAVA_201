@@ -1,0 +1,41 @@
+
+kullanıcıdan alınan bir regular expression (RegEx) deseni ve bir metin üzerinde bu deseni arayarak eşleşen sonuçları bulan bir program
+
+class Driver {
+    public static void main(String [] args){
+        Pattern pattern;
+        Matcher matcher;
+        String regExPattern;
+        String text;
+
+        Scanner scanner = new Scanner(System.in);
+
+        while(true){
+            System.out.print("Bir RegEx modeli giriniz: ");
+             regExPattern = scanner.nextLine();
+
+             pattern = Pattern.compile(regExPattern);
+
+              System.out.println("Bir metin giriniz:");
+             text = scanner.nextLine();
+
+             matcher = pattern.matcher(text);
+
+            while(matcher.find()){
+                System.out.println("Baslangic indeksi  : "+matcher.start());
+                System.out.println("Bitis indeksi      : "+matcher.end());
+                System.out.println("Bulunan metin      : -"+matcher.group()+"-");
+            }
+        }
+
+    }
+}
+
+
+matcher.start(): Eşleşen alt dizenin başlangıç indeksi.
+matcher.end(): Eşleşen alt dizenin bitiş indeksi (dahil değil).
+matcher.group(): Eşleşen alt dizeyi döndürür.
+
+Matcher sınıfının find() metodu, bir metin üzerinde regular expression desenine uyan alt dizeyi bulmaya çalışır. 
+Bu metot, desenle eşleşen bir alt dize bulduğunda true döner ve ilerleyen bir konumda durur.
+Eğer bir eşleşme bulunmazsa false döner.
