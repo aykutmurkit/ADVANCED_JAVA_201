@@ -1,0 +1,73 @@
+regEX quantifiers - bir şeyin ne kadar devam ettiğini söylediğimiz ifadeler 
+
+// a?       --> a bir defa vardır ya da hiç yoktur.
+// a+       --> a bir defa vardır ya da birden fazla vardır.
+// a*       --> a hiç yok yada bir ya da birden fazla vadır.
+// a{n}     --> a sadece n defa tekrar eder.
+//a{n,}     --> a n defa yada daha fazla vardır.
+//a{n,m}    --> a en az n defa, en fazla m defa vardır.
+
+
+## a? ##
+
+System.out.println(Pattern.matches("a?","a"));  // true
+System.out.println(Pattern.matches("a?","aa"));  // false
+System.out.println(Pattern.matches("a?",""));  // true
+System.out.println(Pattern.matches("a?","b"));  // false
+
+## a+ ##
+
+System.out.println(Pattern.matches("a+","a"));  // true
+System.out.println(Pattern.matches("a+","aa"));  // true
+System.out.println(Pattern.matches("a+","aaa"));  // true
+System.out.println(Pattern.matches("a+",""));  // false
+System.out.println(Pattern.matches("a+","b"));  // false
+
+## a* ##
+
+System.out.println(Pattern.matches("a*","a"));  // true
+System.out.println(Pattern.matches("a*","aa"));  // true
+System.out.println(Pattern.matches("a*",""));  // true
+
+##  a{n} ##
+
+System.out.println(Pattern.matches("a{4}","a"));  // true
+System.out.println(Pattern.matches("a{4}","aa"));  // true
+System.out.println(Pattern.matches("a{4}","aaa"));  // true
+System.out.println(Pattern.matches("a{4}","aaaa"));  // true
+System.out.println(Pattern.matches("a{4}","aaaaa"));  // false
+System.out.println(Pattern.matches("a{4}","aa aa"));  // false
+
+## a{n,} ##
+
+System.out.println(Pattern.matches("a{2,}","a"));  // false
+System.out.println(Pattern.matches("a{2,}","aa"));  // true
+System.out.println(Pattern.matches("a{2,}",""));  // false
+System.out.println(Pattern.matches("a{2,}","aaaa"));  // true
+System.out.println(Pattern.matches("a{2,}","b"));  // false
+
+## a{n,m} ##
+System.out.println(Pattern.matches("a{2,5}","aa")); // true
+System.out.println(Pattern.matches("a{2,5}","aaa")); // true
+System.out.println(Pattern.matches("a{2,5}","aaaa")); // true
+System.out.println(Pattern.matches("a{2,5}","aaaaa")); // true
+System.out.println(Pattern.matches("a{2,5}","")); // false
+System.out.println(Pattern.matches("a{2,5}","a")); // false
+System.out.println(Pattern.matches("a{2,5}","b")); // false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
