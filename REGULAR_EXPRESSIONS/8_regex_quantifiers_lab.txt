@@ -1,0 +1,120 @@
+
+[abc]?
+
+// [abc]? a ya da b ya da c harflerinden biri vardır yada hiç yoktur.
+
+System.out.println(Pattern.matches("[abc]?","a"));  // true
+System.out.println(Pattern.matches("[abc]?","b"));  // true
+System.out.println(Pattern.matches("[abc]?","c"));  // true
+System.out.println(Pattern.matches("[abc]?",""));   // true
+System.out.println(Pattern.matches("[abc]?","ab"));   // false // biz burada sadece bir harfin kontrolünü yapıyoruz.
+
+
+NOTE : ? ile * yan yana kullanılamaz....
+
+________________________________________________________________________________________________________________________________________________________
+
+[abc]+
+
+// a ya da b ya da c harflerinden bir bir veya birden fazla vardır.
+// bu aslında şöyle anlam ifade eder [abc][abc] ... böyle sonsuza kadar gider yıldızdan farkı yıldızda hiç olmaması da true döner.
+
+System.out.println(Pattern.matches("[abc]+","a"));  // true
+System.out.println(Pattern.matches("[abc]+","b"));  // true
+System.out.println(Pattern.matches("[abc]+","c"));  // true
+System.out.println(Pattern.matches("[abc]+","aa"));  // true
+System.out.println(Pattern.matches("[abc]+","bb"));  // true
+System.out.println(Pattern.matches("[abc]+","cc"));  // true
+System.out.println(Pattern.matches("[abc]+","abc"));  // true
+System.out.println(Pattern.matches("[abc]+","ab"));  // true
+System.out.println(Pattern.matches("[abc]+","ac"));  // true
+System.out.println(Pattern.matches("[abc]+","abcca"));  // true
+
+System.out.println(Pattern.matches("[abc]+",""));  // false
+System.out.println(Pattern.matches("[abc]+","ab abc"));  // false
+System.out.println(Pattern.matches("[abc]+","ad"));  // false
+
+________________________________________________________________________________________________________________________________________________________
+
+[abc]* 
+
+// a ya da b ya da c harflerinden biri bir veya birden fazla vardır. yada hiç yoktur.
+
+System.out.println(Pattern.matches("[abc]*","a"));  // true
+System.out.println(Pattern.matches("[abc]*","b"));  // true
+System.out.println(Pattern.matches("[abc]*","c"));  // true
+System.out.println(Pattern.matches("[abc]*","aa"));  // true
+System.out.println(Pattern.matches("[abc]*","bb"));  // true
+System.out.println(Pattern.matches("[abc]*","cc"));  // true
+System.out.println(Pattern.matches("[abc]*","abc"));  // true
+System.out.println(Pattern.matches("[abc]*","ab"));  // true
+System.out.println(Pattern.matches("[abc]*","ac"));  // true
+System.out.println(Pattern.matches("[abc]*","abcca"));  // true
+System.out.println(Pattern.matches("[abc]+",""));  // true
+
+System.out.println(Pattern.matches("[abc]+","ab abc"));  // false
+System.out.println(Pattern.matches("[abc]+","ad"));  // false
+
+________________________________________________________________________________________________________________________________________________________
+
+[abc]{3}
+
+System.out.println(Pattern.matches("[abc]{3}","abc"));   // true
+System.out.println(Pattern.matches("[abc]{3}","aaa"));   // true
+System.out.println(Pattern.matches("[abc]{3}","bbb"));   // true
+System.out.println(Pattern.matches("[abc]{3}","ccc"));   // true
+
+System.out.println(Pattern.matches("[abc]{3}","aa"));    // false
+System.out.println(Pattern.matches("[abc]{3}","abcc"));  // false
+System.out.println(Pattern.matches("[abc]{3}","abd"));   // false
+
+________________________________________________________________________________________________________________________________________________________
+
+[abc]{3,6}
+
+System.out.println(Pattern.matches("[abc]{3}","abc"));   // true
+
+System.out.println(Pattern.matches("[abc]{3}","abcaaab"));   // false
+System.out.println(Pattern.matches("[abc]{3}","abcd"));   // false
+System.out.println(Pattern.matches("[abc]{3}","ab"));   // false
+System.out.println(Pattern.matches("[abc]{3}",""));   // false
+
+________________________________________________________________________________________________________________________________________________________
+
+[abc]{2,}
+
+System.out.println(Pattern.matches("[abc]{2,}","ab"));   // true
+System.out.println(Pattern.matches("[abc]{2,}","abca"));   // true
+
+System.out.println(Pattern.matches("[abc]{2,}","dabc"));   // false
+System.out.println(Pattern.matches("[abc]{2,}","a"));   // false
+System.out.println(Pattern.matches("[abc]{2,}",""));   // false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________________________________________________________________________________________________________________________________________________
+
+System.out.println(Pattern.matches("",""));
