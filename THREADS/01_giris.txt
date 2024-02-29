@@ -1,0 +1,10 @@
+
+
+thread nedir?
+
+1. thread'ler process'lerin hafif halidir.
+2. bir progrmaın en küçük bağımsız birimidir.
+3. ayrı bir yürütülme yolu vardır.
+4. her java programı 1 thread içerir.
+5. java.lang.Thread sınıfı tarafından bir thread oluşturulur ve kontrol edilir.
+
