@@ -1,0 +1,35 @@
+class Gorev extends Thread{
+
+    // run methodu override edildi.
+
+    @Override
+    public void run(){
+        for(int i =1;i<=20;i++){
+            System.out.println("- Gorev sinifi - "+"Numara: "+i);
+        }
+    }
+}
+
+
+
+public class Driver{
+
+    //main metot main thread'i temsil eder.
+    public static void main(String [] args){
+
+
+        //JOB 1
+        System.out.println("PROGRAM BAŞLADI");
+
+        //JOB2
+        Gorev gorev = new Gorev();
+        gorev.start();
+
+
+
+        System.out.println("PROGRAM BITTI");
+
+    }
+}
+
+main threadtens onra threadler thread-0 thread-1 diye isimlendirilliyor.
