@@ -1,0 +1,7 @@
+thread lifecycle
+
+new -> runnable -> running -> terminated 
+
+running -> wating -> running moda geçebiliyor.
+
+bir de bloacked var bekletme  işte 
