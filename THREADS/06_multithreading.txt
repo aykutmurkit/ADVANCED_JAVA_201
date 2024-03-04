@@ -1,0 +1,58 @@
+public class Yazici{
+    void dokumanlariYazdir(int kopyaSayisi,String dokumanIsmi){
+        for(int i=1;i<=kopyaSayisi;i++){
+            try {
+                Thread.sleep(500); // 500 milisaniye bekler // bu şekilde senksanizayonsan sağlayabilirsin bir o bir o çalışır ama mantıklı değil.
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(dokumanIsmi+" isimli dosyanın "+i+". kopasi yazdırıldı");
+        }
+    }
+}
+
+
+public class Gorev implements Runnable{
+
+    String dokumanIsmi;
+    int kopyaSayisi;
+    Yazici yaziciRef;
+
+    public Gorev(Yazici yaziciRef, int kopyaSayisi, String dokumanIsmi){
+        this.yaziciRef = yaziciRef;
+        this.kopyaSayisi = kopyaSayisi;
+        this.dokumanIsmi = dokumanIsmi;
+    }
+
+
+    @Override
+    public void run(){
+        yaziciRef.dokumanlariYazdir(kopyaSayisi,dokumanIsmi);
+    }
+}
+
+
+
+
+
+
+public class Driver{
+    public static void main (String [] args){
+        Yazici yazici = new Yazici();
+   
+    // Runnable r1 = new Gorev(), r2 = new Gorev();
+
+    Runnable r1 = new Gorev(yazici,5,"vize1-sinavi.pdf);
+    Runnable r2 = new Gorev(yazici,5,"final-sinavi.pdf");
+
+
+
+    Thread gorev1 = new Thread(r1);
+    Thread gorev2 = new Thread(r2);
+
+
+
+
+    }
+}
