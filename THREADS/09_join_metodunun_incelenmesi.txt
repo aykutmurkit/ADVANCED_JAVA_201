@@ -1,0 +1,9 @@
+gorev1.start();
+gorev1.join(); // gorev1 threadini ölene kadar bekle demek. // throw eklemeni yada try catch eklemeni isteyecek.
+
+gorev2.start();
+gorev2.join();
+
+gorev3.start(); // sonuncusuna join koymana gerek yok çünkü başka kalmadı.
+
+
