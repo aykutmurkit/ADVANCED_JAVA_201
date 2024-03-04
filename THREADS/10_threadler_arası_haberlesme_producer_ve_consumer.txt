@@ -1,0 +1,123 @@
+public class kaynak{
+
+    private int tuketimNo;
+    private boolean uretimMi = true;
+
+    // consumer çalıştırıyor
+    public synchronized int getTuketimNo(){
+        
+        
+        
+        while(uretimMi){
+            try{
+            //
+            wait();
+            }
+            catch(InterruptedException e){
+                 e.printStackTrace
+             }
+        }
+        
+        uretimMi = true;
+
+        notify(); // consumer uyandırılıyor. / notify obje methodudur.
+
+        return tuketimNo;
+    }
+
+    // producer kullanıyor.
+    public synchronized void setTuketimNo(int tuketimNo){
+
+        (!uretimMi){
+             try{
+            //producer üretim yapmadan consumer tüketmeyecek
+            wait();
+            }
+            catch(InterruptedException e){
+                e.printStackTrace
+            }
+        }
+
+        system.out.println(tuketimNo+" degeri üretildi.");
+        this.tuketimNo = tuketimNo;
+        uretimMi = false;
+
+        notify(); // producer uyandırılıyor. // notify obje methodudur.
+        
+    }
+
+
+}
+
+________________________________________________________________________________________________________________________________________________________
+
+
+public class Producer implements Runnable{
+
+    private Kaynak kaynak;
+
+    public Producer(Kaynak Kaynak){
+        this.kaynak = kaynak;
+        Thread gorev = ne Thread(this, "producer threadi");
+        gorev.start();
+
+    }
+
+    @Override
+    public void run(){
+        int i= 0;
+        while(true){
+            kaynak.setTuketimNo(i++);
+
+            
+        }
+    }
+
+}
+
+________________________________________________________________________________________________________________________________________________________
+
+public class Consumer implements Runnable{
+    
+    private Kaynak kaynak;
+
+    public Consumer(Kaynak kaynak){
+        this.kaynak = kaynak;
+        Thread gorev = ne Thread(this, "consumer threadi");
+        gorev.start();
+    }
+    
+    
+    @Override
+    public void run(){
+        int i = 0;
+        while(true){
+
+            System.out.println(kaynak.getTuketimNo()+" deger tüketildi");
+            try{
+                Thread.sleep(500);
+            }
+            catch(InterruptedException e){
+                e.printStackTrace;
+            }
+        }
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________
+
+
+public class Driver{
+    public static void main(String[] args){
+
+        Kaynak kaynak = new Kaynak();
+
+        new Producer(Kaynak); // producer kaynağı dolduruyor
+        new Consumer(Kaynak); // consumer kaynağı tüketiyor
+
+
+
+
+
+    }
+}
