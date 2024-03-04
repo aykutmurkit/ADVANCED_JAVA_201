@@ -89,3 +89,26 @@ public class Driver {
         new Consumer(kaynak); // consumer kaynağı tüketiyor
     }
 }
+
+
+
+Bu kod, üretici-tüketici problemi üzerine kurulu bir çoklu thread uygulamasıdır. Bu tür bir problem, iki tür threadin (üretici ve tüketici) ortak bir veri paylaşarak çalıştığı bir senaryoyu modellemektedir. Kodunuzda bu görevi üstlenen sınıflar şunlardır:
+
+Kaynak (Resource) Sınıfı:
+
+tuketimNo adında bir özel tüketim numarası değişkenine ve uretimMi adında bir bayrak değişkenine sahiptir.
+getTuketimNo metodu, tüketim numarasını döndürür. Ancak, uretimMi bayrağı true olduğunda bekler (wait). Tüketici bu metodu çağırarak tüketim numarası alır ve uretimMi bayrağını false olarak ayarlar. Ardından diğer threadlere haber vermek için notify çağrısı yapar.
+setTuketimNo metodu, bir tüketim numarasını alır ve uretimMi bayrağı false olduğunda bekler (wait). Ardından, tüketiciye tüketim numarasını atar, uretimMi bayrağını true olarak ayarlar ve diğer threadlere haber vermek için notify çağrısı yapar.
+Producer (Üretici) Sınıfı:
+
+Kaynak sınıfını alarak bir üretici thread oluşturur.
+run metodu içinde sürekli olarak setTuketimNo metodunu çağırarak tüketim numarası üretir.
+Consumer (Tüketici) Sınıfı:
+
+Kaynak sınıfını alarak bir tüketici thread oluşturur.
+run metodu içinde sürekli olarak getTuketimNo metodunu çağırarak tüketim numarası tüketir.
+Driver (Sürücü) Sınıfı:
+
+main metodu içinde Kaynak sınıfından bir nesne oluşturulur.
+Bir üretici ve bir tüketici thread başlatılır.
+Bu tasarım, üretici ve tüketici threadlerin veriyi güvenli bir şekilde paylaşmasını sağlamak için synchronized anahtar kelimesini kullanır. wait ve notify çağrıları, bir threadin diğerinin işini bitirmesini beklemek için kullanılır.
