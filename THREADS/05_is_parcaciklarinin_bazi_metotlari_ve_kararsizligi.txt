@@ -1,0 +1,63 @@
+class DigerGorev extends UstGorev implements Runnable{
+
+    @Override
+    public void run(){
+
+        System.out.println(Thread.currentThread().getName()+
+                           " isimli"+
+                           "threadin çalışma anındaki aktif thread sayisi: "+
+                           thread.activeCount());
+
+        for(int i=1;i<=30;i++){
+            System.out.println("- Diger Görev sınıfı - "+i);
+        }
+
+    }
+}
+
+public class Driver{
+    public static void Main(String [] args){
+
+        //JOB 1
+        Thread.currentThread().setName("- main thread-"); // main isimli thread'in ismini değiştirdik.
+        
+
+
+        //JOB 3
+        Runnable g2 = new DigerGorev();
+        Thread gorev2 = new Thread(g2,"-Diger Gorev Thread 1 -");  // bu şekilde threadi isimlendirebilirsin.
+
+        //JOB 4
+        new Thread(new DigerGorev(),"- Diger gorev thread 2 -").start(); // anonim sınıf ile oluşturma
+
+    }
+}
+
+note: 
+
+olaylardan anladığım şu diyelim ki bir çok thread anda çalışıyor ancak diğer threadler işini yapmadan main bitmiyor.
+
+note:
+
+mesela methodlar var 
+
+Thread.currentThread().isAlive(); // thread canlı mı 
+Thread.currentThread().isDaemon(); // thread ölü mü
+Thread.currentThread().isInterrupted(); // thread bekletiliyor mu
+
+
+NOTE: öncelikler
+
+gorev2.setPriorty(10); 10 8 den önceliklidir gibi.
+
+default priorty 5 tir.
+
+Thread.currentThread().getPriorty(); // ile öncelik sırasnı öğrenebilirsin.
+
+Java'da Thread öncelikleri 1 ile 10 arasında bir değer alır, 
+burada 10 en yüksek önceliği, 1 ise en düşük önceliği temsil eder. 
+Yani, 10 daha yüksek bir öncelik seviyesine sahiptir ve 1 daha düşük bir öncelik seviyesine sahiptir. 
+Dolayısıyla, 10, 1'e göre daha önceliklidir.
+
+thread1.setPriority(Thread.MAX_PRIORITY); // Maksimum öncelik
+thread2.setPriority(Thread.MIN_PRIORITY); // Minimum öncelik
