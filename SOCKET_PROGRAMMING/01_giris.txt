@@ -1,0 +1,50 @@
+
+
+        //ağda çalışan iki programın çift yönlü bağlantıda kalmasını sağlar.
+
+        // chat uygulamaları bu şekilde var olmuştur. arka planda socket programlama kullanır.
+
+        Client : (istemci) --> talepte bulunan kişidir.
+        Server : (sunucu) --> hizmet veriyoruz.
+
+        Client --> request(istek) atar, talepte bulunur.
+        Server --> response(cevap) to Client
+
+        Socket nedir?
+        -> Soket ... yaz bunu 
+
+        // server port <-> communication <-> client port // sunucu kapısı gibi düşünebilirsin.
+
+        port yardımı ile server ve client iletişim sağlıyor.
+
+
+        socket server'inin ve socketin metotları vardır.
+        --> public InputStream getInputStream() gibiiii
+
+        // public synchornized void close() --> soketi kapatmayı sağlar.
+        yada public Socket accept() client ile server arasında bir bağlantı döndürüyor.
+
+
+        // CLIENT SIDE PROGRAMMING 
+
+        socket bağlantısı kurma.
+        IP adresini ve TCP bağlantı noktasını sağlamak gerekiyor.
+        istemci ile iletişimi 
+        kapat
+
+        SERVER SIDE PROGRAMMING
+
+        socket bağlantısı kurma
+        istemcinin isteğini bekler
+        istemci ile iletişim
+        bağlantıyı kapatma
+
+        
+
+
+
+
+
+
+
+
