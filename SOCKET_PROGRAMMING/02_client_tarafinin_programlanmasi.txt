@@ -37,12 +37,15 @@ public class Client{
         output.close();
         socket.close();
 
+
+        // kapatmamızın sebebi uygulama sadece bir tane client kabul ediyor.
+
     }
 
 
     public static void main(String [] args){
 
-
+        Client client = new Client("127.0.0.1",5000); // 127.0.0.1 localhosttur.
 
 
     }
