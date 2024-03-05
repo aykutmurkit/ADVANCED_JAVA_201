@@ -1,0 +1,57 @@
+public class Server{
+
+
+    private static String[] isimler = {"aykut","irem","sibel","ayhan"};
+    private static String[] meslekler = {"mühendis","mimar","öğretmen"};
+
+    private static final int PORT = 5001;
+
+
+
+    public static void main(String []) throws IOException {
+
+        ServerSocket sunucu = new ServerSocket(PORT);
+        System.out.println("[SERVER] --> bir istemicinin bağlanması bekleniyor");
+
+        Socket client = sunucu.accept();
+        System.out.println("[SERVER] --> bir istemici bağlandı");
+
+        PrintWriter output = new PrintWriter(client.getOutputStream(),true);
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+        while(true){
+            String clientRequest = input.readLine();
+
+            if(clientRequest.contains("bir kisi soyle")){
+                output.println(rastgelekisiSec());
+            }
+            else if(clientRequest.equals("bitti")){
+                output.println("Hoşçakal, yine bekleriz...");
+                System.out.println("SUNUCU KAPATILDI");
+                break;
+            }
+            else{
+                output.println("Rasgale bir kisi bilgisi almak için \"bir kisi söyle yazınız \"");
+            }
+        }
+        output.close();
+        input();
+
+    }
+
+    public static string rastgelekisiSec(){
+
+        /*
+        Math.random => [0,1)
+        [0-0,25)*4 => [0,1) => 0
+        [0.25,0.5)*4 => [1,2) => 1
+        [0.5,0.75)*4 => [2,3) => 2
+        [0.75,1)*4 => [3,4) => 3
+        */
+
+        int no = (int) (Math.random()*isimler.length);
+        return isimler[no] + " "+ meslekler[no];
+    }
+
+}
