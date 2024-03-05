@@ -1,0 +1,54 @@
+public class server {
+
+    private Socket socket = null;
+    private ServerSocket server = null;
+    private DataInputStream input = null;
+
+    public Server(int port) throws IOException {
+        
+        server = new ServerSocket(port);
+
+        System.out.println("sunucu baslatildi...");
+
+        System.out.println("Bir client(istemci) bekleniyor...");
+
+        socket = server.accept();
+
+        System.out.println("Bir client(istemci) kabul edildi...");
+
+        // client socketinden girdi alınıyor.
+
+        input = new DataInputStream(new BufferedInputStream(socket.getInputStream())); // tampon kullarak alıyoruz.
+
+        String metin = "";
+
+        while(!metin.equals("exit")){
+            metin = input.readUTF();
+            System.out.println(metin);
+        }
+
+
+        System.out.println("Bağlantı sonlandiriliyor...");
+
+        input.close();
+        socket.close();
+    }
+
+
+    public static void main(String [] args) throws IOException {
+
+        Server server = new Server(5000); // 5000 portundan faliyete geçsin.  
+
+
+
+
+    }
+}
+
+##########
+## NOTE ##
+##########
+
+// note eğer server ı sonsuz döngüye sokup kapatmazsan ancak client bağlanıp kapanırsa end of file exception alırsın.
+// bitti geldikten sonra o ara client kapanıyor ancak bittiyi sever ekrana yazdıktan sonra tekrar input bekliyor. o yüzden hata alınıyor.
+
