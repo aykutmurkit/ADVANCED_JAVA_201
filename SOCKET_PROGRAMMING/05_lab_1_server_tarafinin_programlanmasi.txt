@@ -1,0 +1,33 @@
+public class Server{
+
+
+    private static final int PORT = 5001;
+
+    public static void main(String [] args) throws IOException{
+
+    ServerSocket sunucu = new ServerSocket(PORT);
+
+    System.out.println("[sunucu] bir istemcinin bağlanması bekliyor.");
+
+    Socket client = sunucu.accept();  // kabul edilen clientın bilgisi tutuluyor.
+
+    /*// bu yapılan işlem  sunucu kapanmadan sürekli yeni gelen ve giden clientlere bilgi göndermesi için
+
+        PrintWriter output = new PrintWriter(client.getOutputStream(),true); // buradaki true autoflus için buffer temizlensin önceden.
+        output.println(new Date().toString());
+        client = sunucu.accept(); // bu şekilde eski bağlantıyı koparıp tekrar bağlantı beklicez.
+
+    */
+
+    PrintWriter output = new PrintWriter(client.getOutputStream(),true); // buradaki true autoflus için buffer temizlensin önceden.
+
+    output.println(new Date().toString());
+
+    System.out.println("[sunucu] tarih bilgisi gönderildi. bağlntı kapatılıyor...");
+
+    client.close();
+    sunucu.close();
+
+
+    }
+}
