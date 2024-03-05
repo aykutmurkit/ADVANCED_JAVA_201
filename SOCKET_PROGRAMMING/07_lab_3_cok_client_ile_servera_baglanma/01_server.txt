@@ -1,0 +1,19 @@
+public class Server{
+
+    private static String[] isimler = {"Aykut","irem","Sibel","Ayhan"};
+    private static String[] meslekler = {"Mühendis","Öğretmen","Mimar","Doktor"};
+
+    private static final int PORT = 5001;
+
+    public static void main(String [] args){
+
+
+    }
+
+    public static String rastgeleKisiSec(){
+        int no =(int)(Math.random()*isimler.length);
+        return isimler[no]+" "+meslekler[0];
+
+    }
+
+}
