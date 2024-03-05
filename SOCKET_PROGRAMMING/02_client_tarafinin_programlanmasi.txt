@@ -1,0 +1,49 @@
+public class Client{
+
+
+    //Soket,Input,Output
+
+    private Socket socket = null;
+    private DataInputStream input = null;
+    private DataOutputStream output = null;
+
+
+    // constructor
+
+    public Client(String address,int port) throws UnknownHostException, IOException {
+        //bağlantı kurmak
+
+        System.out.println("-Client- sunucuya bağlandı");
+       
+       input = new DataInputStream(System.in);
+
+       output = new DataOutputStream(socket.getOutputStream());
+
+
+
+       String metin = "";
+       
+       while(!metin.equals("exit")){
+         try {
+            metin = input.readLine();
+            output.writeUTF(metin);
+         }
+         catch(IOException e) {
+            System.out.println(e.getMessage());
+         }
+       }
+
+        input.close();
+        output.close();
+        socket.close();
+
+    }
+
+
+    public static void main(String [] args){
+
+
+
+
+    }
+}
